@@ -1,6 +1,6 @@
-import Hello from '../components/Hello';
+import Hello from '../../components/Hello';
 import * as actions from '../actions/index';
-import {IStoreState} from "../types/inex";
+import {IStoreState} from "../../types/inex";
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux'
 

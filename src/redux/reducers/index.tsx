@@ -1,5 +1,5 @@
 import {EnthusiasmAction} from "../actions";
-import {IStoreState} from "../types/inex";
+import {IStoreState} from "../../types/inex";
 import {INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM} from "../constants";
 
 export function enthusiasm(state: IStoreState, action: EnthusiasmAction): IStoreState {
