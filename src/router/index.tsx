@@ -1,29 +1,45 @@
 import * as React from "react";
 import { Provider } from "react-redux";
-import { createBrowserHistory } from "history";
-import { applyMiddleware, compose, createStore } from "redux";
-import { connectRouter, ConnectedRouter, routerMiddleware } from "connected-react-router";
 import { Route, Link } from "react-router-dom";
 import Hello from "../components/Hello";
 import About from "../components/about/About";
 import Topic from "../components/topics/Topic";
-import * as RootReducer from "../redux/reducers/index";
+import {
+  addTodo, toggleTodo, setVisibilityFilter, showMySelf,
+  selectSubreddit, fetchPostsIfNeeded
+} from "../redux/actions";
+import { history, configureStore } from "../configureStore2";
+import { ConnectedRouter } from "connected-react-router";
 
-const history = createBrowserHistory();
-const store = createStore(
-  connectRouter(history)(RootReducer.default),
-  {},
-  compose(
-    applyMiddleware(
-      routerMiddleware(history)
-    )
-  )
-);
+const reduxStore = configureStore(undefined);
+// const history = createBrowserHistory();
+// const store = createStore(
+//   connectRouter(history)(RootReducer.default),
+//   {},
+//   compose(
+//     applyMiddleware(
+//       routerMiddleware(history)
+//     )
+//   )
+// );
+
+console.info(reduxStore);
+console.info(reduxStore.getState());
+console.info(reduxStore.dispatch(addTodo(123)));
+console.info(reduxStore.dispatch(toggleTodo(1)));
+console.info(reduxStore.dispatch(setVisibilityFilter(() => {
+})));
+console.info(reduxStore.dispatch(showMySelf("This is Dispatch MySelf")));
+reduxStore.dispatch(selectSubreddit(("reactjs")));
+reduxStore.dispatch<any>(fetchPostsIfNeeded("reactjs"))
+  .then(() => console.log(reduxStore.getState()));
+console.info(reduxStore.getState());
+
 
 export default class RouterConfiguration extends React.Component {
   public render() {
     return (
-      <Provider store={store}>
+      <Provider store={reduxStore}>
         <ConnectedRouter history={history}>
           <div>
             <ul>
