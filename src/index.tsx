@@ -23,8 +23,10 @@ import RouterConfiguration from "./router";
 // );
 
 
-ReactDOM.render(
+const renderApp = () => ReactDOM.render(
   <RouterConfiguration/>,
   document.getElementById("root") as HTMLElement
 );
+
+renderApp();
 registerServiceWorker();

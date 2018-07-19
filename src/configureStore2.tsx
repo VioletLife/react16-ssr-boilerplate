@@ -7,10 +7,11 @@ import { createBrowserHistory } from "history";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 
 export const history = createBrowserHistory();
-export  function configureStore(preloadedState: any) {
+
+export function configureStore(preloadedState: any) {
   const middlewares = [routerMiddleware(history), loggerMiddleware, thunkMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
-  const composedEnhancers = compose(middlewareEnhancer, monitorReducerEnhancer);
+  let composedEnhancers = compose(middlewareEnhancer, monitorReducerEnhancer);
   const store = createStore(connectRouter(history)(rootReducer), preloadedState, composedEnhancers);
   return store;
 }
