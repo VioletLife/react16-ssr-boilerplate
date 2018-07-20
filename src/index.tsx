@@ -8,7 +8,7 @@ import "./index.css";
 
 import registerServiceWorker from "./registerServiceWorker";
 import RouterConfiguration from "./router";
-
+import { renderRoot } from "./appContainer";
 
 // const store = createStore(enthusiasm, {
 //   enthusiasmLevel: 1,
@@ -25,7 +25,7 @@ import RouterConfiguration from "./router";
 
 const renderApp = () => ReactDOM.render(
   <RouterConfiguration/>,
-  document.getElementById("root") as HTMLElement
+  renderRoot("root") as HTMLElement
 );
 
 renderApp();
